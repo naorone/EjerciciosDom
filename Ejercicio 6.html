@@ -56,18 +56,12 @@
         function restaurar()
         {
             let cuadro = document.getElementById("cuadro");
-            let h =document.getElementById("primero");
-            let h2 =document.getElementById("segundo");
-            let h3 =document.getElementById("tercero");
-            h.remove("h");
-            h2.remove("h2");
-            h3.remove("h3");
+            cuadro.remove();
 
-            let uno = cuadroInicial.getElementsByTagName("h4");
-            cuadro.appendChild(uno.createTextNode(uno[0]));
-/*
-            let nuevo = cuadroInicial.getElementsByTagName("h4");
-            document.write(nuevo.getElementsByTagName([0]));*/
+            let cuadroNuevo= document.createElement("div");
+            let hNuevo= document.createElement("h4");
+           hNuevo = cuadroInicial.getElementById("primero");
+            cuadroNuevo.appendChild(hNuevo);
         }
 
 
