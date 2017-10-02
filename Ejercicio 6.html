@@ -9,14 +9,14 @@
     </style>
 
     <script>
-        let cuadroInicial = document.getElementById("cuadro");
+
 
         function debajo()
         {
-
-
             let cuadro = document.getElementById("cuadro");
-            cuadro.appendChild(document.createTextNode("Elemento al final"));
+            let nuevo = document.createElement("h4");
+            nuevo.appendChild(document.createTextNode("Elemento al final"));
+            cuadro.appendChild(nuevo);
 
         }
 
@@ -32,15 +32,15 @@
         function reemplazar()
         {
 
-            let primero =document.getElementById("primero");
-            primero.innerHTML = "Nuevo Primero";
+
+            let primero = document.getElementsByTagName("h4");
+            primero[0].innerHTML = "Nuevo Primero";
 
         }
 
         function suprimir()
         {
             let parrafos = document.getElementsByTagName("p");
-
             parrafos[2].remove();
 
         }
@@ -56,12 +56,33 @@
         function restaurar()
         {
             let cuadro = document.getElementById("cuadro");
-            cuadro.remove();
+            let t1 = document.createElement("h4");
+            t1.innerHTML = "Primer texto fijo";
+            let t2 = document.getElementById("segundo");
+            let t3 = document.getElementById("tercero");
 
-            let cuadroNuevo= document.createElement("div");
-            let hNuevo= document.createElement("h4");
-           hNuevo = cuadroInicial.getElementById("primero");
-            cuadroNuevo.appendChild(hNuevo);
+           borrarCuadro();
+
+            cuadro.appendChild(t1);
+            cuadro.appendChild(t2);
+            cuadro.appendChild(t3);
+
+
+        }
+        function borrarCuadro()
+        {
+            let elemCuadro=document.getElementById("cuadro");
+            while(elemCuadro.hasChildNodes())
+            elemCuadro.removeChild(elemCuadro.firstChild);
+        }
+
+        function copiar()
+        {
+            let cuadro = document.getElementById("cuadro");
+            let textos = document.getElementsByTagName("h4");
+            let elementoUlt = textos.item(textos.length-1);
+            cuadro.appendChild(elementoUlt.cloneNode(true));
+
         }
 
 
@@ -71,7 +92,7 @@
 <body>
 <h1>Manipulación  de nodos. </h1>
 <div id="cuadro">
-    <h4 id="primero">primer texto fijo</h4>
+    <h4 id="primero">Primer texto fijo</h4>
     <h4 id="segundo">Segundo texto fijo</h4>
     <h4 id="tercero">Tercer texto fijo</h4>
 </div>
