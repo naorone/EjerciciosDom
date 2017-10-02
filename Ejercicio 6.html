@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+    <title>Manipular nodos</title>
+    <style type="text/css">
+        #cuadro  { width: 400px; height: 250px; border: 1px black solid; float: right;
+            font-family: arial; overflow: auto }
+        p  { font-size: 1em; font-family: arial;  }
+    </style>
+
+    <script>
+        let cuadroInicial = document.getElementById("cuadro");
+
+        function debajo()
+        {
+
+
+            let cuadro = document.getElementById("cuadro");
+            cuadro.appendChild(document.createTextNode("Elemento al final"));
+
+        }
+
+        function delante()
+        {
+
+            let cuadro = document.getElementById("cuadro");
+            cuadro.insertBefore(document.createTextNode("Elemento segundo"),cuadro.childNodes[2]);
+
+        }
+
+
+        function reemplazar()
+        {
+
+            let primero =document.getElementById("primero");
+            primero.innerHTML = "Nuevo Primero";
+
+        }
+
+        function suprimir()
+        {
+            let parrafos = document.getElementsByTagName("p");
+
+            parrafos[2].remove();
+
+        }
+
+        function cambiar()
+        {
+            let cuadro = document.getElementById("cuadro");
+            let segundo =document.getElementById("segundo");
+            segundo.remove();
+            cuadro.appendChild(segundo);
+        }
+
+        function restaurar()
+        {
+            let cuadro = document.getElementById("cuadro");
+            let h =document.getElementById("primero");
+            let h2 =document.getElementById("segundo");
+            let h3 =document.getElementById("tercero");
+            h.remove("h");
+            h2.remove("h2");
+            h3.remove("h3");
+
+            let uno = cuadroInicial.getElementsByTagName("h4");
+            cuadro.appendChild(uno.createTextNode(uno[0]));
+/*
+            let nuevo = cuadroInicial.getElementsByTagName("h4");
+            document.write(nuevo.getElementsByTagName([0]));*/
+        }
+
+
+    </script>
+
+</head>
+<body>
+<h1>Manipulación  de nodos. </h1>
+<div id="cuadro">
+    <h4 id="primero">primer texto fijo</h4>
+    <h4 id="segundo">Segundo texto fijo</h4>
+    <h4 id="tercero">Tercer texto fijo</h4>
+</div>
+<p>Pulsa en los siguientes párrafos, para cambiar los textos de la caja de la derecha</p>
+<p onclick="restaurar()">Pulsa en este párrafo para restaurar el estado inicial de la caja.</p>
+<p onclick="debajo()">Insertar nuevo elemento debajo de todos</p>
+<p onclick="delante()">Insertar nuevo elemento delante del segundo.</p>
+<p onclick="reemplazar()">reemplazar el primer elemento de la caja por otro nuevo</p>
+<p onclick="suprimir()">Suprimir el tercer párrafo</p>
+<p onclick="cambiar()">Poner el segundo texto en último lugar</p>
+<p onclick="copiar()">Copia del nuevo elemento, se inserta al final</p>
+</body>
+</html>
