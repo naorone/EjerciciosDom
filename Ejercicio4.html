@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html >
 <html><head>
     <title>Ver todos los párrafos</title>
     <style type="text/css">
@@ -10,21 +9,27 @@
     <script>
         function acceder()
         {
-            let parrafos = document.getElementsByTagName("p");
+
             let cuadro = document.getElementById("cuadro");
+            let parrafos = document.querySelectorAll("body > p");
 
             for (i=0; i < parrafos.length; i++)
             {
-                cuadro.appendChild(parrafos[i]);
+                let clon = parrafos[i].cloneNode(true);
+                cuadro.appendChild(clon);
             }
+
+
 
         }
 
         function borrar()
         {
-
             let cuadro = document.getElementById("cuadro");
-            cuadro.remove();
+            while(cuadro.firstChild)
+            {
+                cuadro.removeChild(cuadro.firstChild);
+            }
 
         }
     </script>
