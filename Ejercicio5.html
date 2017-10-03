@@ -1,19 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html >
 <html><head>
     <title>Ver todos los párrafos</title>
     <style type="text/css">
         #cuadro { width: 400px; height: 200px; border: 1px black solid; float: right; }
         p { font-size: 1em; font-family: arial; }
     </style>
-
+    <meta charset="UTF-8">
     <script>
-        function acceder()
+        function acceder(id)
         {
-            let parrafos = document.getElementsByTagName("p");
             let cuadro = document.getElementById("cuadro");
+            let parrafos = document.querySelectorAll("body > p");
 
-            cuadro.appendChild(parrafos[3]);
+
+            let clon = parrafos[id].cloneNode(true);
+
+            cuadro.appendChild(clon);
 
         }
 
@@ -21,7 +23,10 @@
         {
 
             let cuadro = document.getElementById("cuadro");
-            cuadro.remove();
+            while(cuadro.firstChild)
+            {
+                cuadro.removeChild(cuadro.firstChild);
+            }
 
         }
     </script>
@@ -30,10 +35,10 @@
 <body>
 <h1>Acceso a los párrafos</h1>
 <div id="cuadro"></div>
-<p>Este es el primer párrafo de esta página</p>
-<p>Este es el segundo párrafo</p>
-<p>Y este el tercero</p>
-<p onclick="acceder()">Pulsa en este cuarto párrafo para volver
+<p onclick="acceder(0)">Este es el primer párrafo de esta página</p>
+<p onclick="acceder(1)">Este es el segundo párrafo</p>
+<p onclick="acceder(2)">Y este el tercero</p>
+<p onclick="acceder(3)">Pulsa en este cuarto párrafo para volver
     a verlos todos en el recuadro de la derecha.</p>
 <p onclick="borrar()">Y pulsa en el quinto para borrar el
     recuadro de la derecha.</p>
