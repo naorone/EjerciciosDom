@@ -9,10 +9,23 @@
     </style>
 
     <script>
+        let sw=false;
+        let t1,t2,t3;
+        function guardar()
+        {
+            if(sw === false)
+            {
+                t1 = document.getElementById("primero");
+             t2 = document.getElementById("segundo");
+             t3 = document.getElementById("tercero");
+             sw=true;
+            }
 
+        }
 
         function debajo()
         {
+            guardar();
             let cuadro = document.getElementById("cuadro");
             let nuevo = document.createElement("h4");
             nuevo.appendChild(document.createTextNode("Elemento al final"));
@@ -22,24 +35,33 @@
 
         function delante()
         {
+            guardar();
+
+            let textos = document.querySelectorAll("div > h4");
 
             let cuadro = document.getElementById("cuadro");
-            cuadro.insertBefore(document.createTextNode("Elemento segundo"),cuadro.childNodes[2]);
+            let nuevo = document.createElement("h4");
+            nuevo.appendChild(document.createTextNode("Nuevo Elemento Segundo"));
+            cuadro.insertBefore(nuevo,textos[1]);
 
         }
 
 
         function reemplazar()
         {
-
-
-            let primero = document.getElementsByTagName("h4");
-            primero[0].innerHTML = "Nuevo Primero";
+            guardar();
+            let cuadro = document.getElementById("cuadro");
+            let nuevo = document.createElement("h4");
+            nuevo.appendChild(document.createTextNode("Nuevo Elemento Primero"));
+            let parrafos = document.querySelectorAll("h4");
+            parrafos[0].remove();
+            cuadro.insertBefore(nuevo,cuadro.childNodes[0]);
 
         }
 
         function suprimir()
         {
+            guardar();
             let parrafos = document.getElementsByTagName("p");
             parrafos[2].remove();
 
@@ -47,21 +69,22 @@
 
         function cambiar()
         {
+            guardar();
             let cuadro = document.getElementById("cuadro");
-            let segundo =document.getElementById("segundo");
-            segundo.remove();
+            let textos = document.querySelectorAll("div > h4");
+            let t = textos.length;
+            let segundo = textos[1];
+            textos[1].remove();
             cuadro.appendChild(segundo);
+            t
         }
 
         function restaurar()
         {
+            guardar();
             let cuadro = document.getElementById("cuadro");
-            let t1 = document.createElement("h4");
-            t1.innerHTML = "Primer texto fijo";
-            let t2 = document.getElementById("segundo");
-            let t3 = document.getElementById("tercero");
 
-           borrarCuadro();
+            borrarCuadro();
 
             cuadro.appendChild(t1);
             cuadro.appendChild(t2);
@@ -78,6 +101,7 @@
 
         function copiar()
         {
+            guardar();
             let cuadro = document.getElementById("cuadro");
             let textos = document.getElementsByTagName("h4");
             let elementoUlt = textos.item(textos.length-1);
